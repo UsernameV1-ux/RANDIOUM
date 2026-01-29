@@ -97,3 +97,34 @@ It is not a finished product — it is an advanced infrastructure lab.
 ---
 
 ## 🛠 Build
+cmake -S . -B build
+cmake –build build
+---
+
+## ⚠ Security Notice
+
+Randioum is experimental infrastructure software.
+
+Do not:
+
+• Use in production  
+• Store real assets  
+• Assume audit-level safety  
+
+---
+
+## 📜 License
+
+[Add license here]
+
+---
+
+## 🔭 Vision
+
+Future decentralized systems will demand deterministic infrastructure.
+
+Randioum is exploring what that foundation looks like.
+
+
+
+
