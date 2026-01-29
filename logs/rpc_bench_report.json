@@ -1,0 +1,27 @@
+{
+  "seed": 77,
+  "data_dir": "C:/Users/MEHDI/AppData/Local/Temp/randium_rpc_bench/chain/data",
+  "scenarios": [
+    {
+      "name": "light_status_supply",
+      "requests": 400,
+      "ok": 400,
+      "failed": 0,
+      "perf_cost": 0
+    },
+    {
+      "name": "mixed_account_tx",
+      "requests": 300,
+      "ok": 300,
+      "failed": 0,
+      "perf_cost": 0
+    },
+    {
+      "name": "snapshot_and_explorer",
+      "requests": 40,
+      "ok": 40,
+      "failed": 0,
+      "perf_cost": 0
+    }
+  ]
+}

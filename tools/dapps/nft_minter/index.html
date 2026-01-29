@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Moonrand DApp Template: NFT Minter</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="wrap">
+    <h1>NFT Minter (MRD-NFT) — Static Template</h1>
+    <p class="muted">This is a pure static UI template. It is CI-friendly and does not start any servers. It assumes an HTTP RPC gateway exists that exposes the endpoints referenced by <span class="mono-inline">app.js</span>.</p>
+
+    <div class="card">
+      <h2>RPC</h2>
+      <label for="rpcUrl">RPC Base URL</label>
+      <input id="rpcUrl" value="http://127.0.0.1:8545" />
+      <div class="btnbar">
+        <button id="btnStatus">Connect (Get Status)</button>
+      </div>
+      <div id="statusOut" class="mono" aria-live="polite"></div>
+    </div>
+
+    <div class="card">
+      <h2>Deploy MRD-NFT marker contract</h2>
+      <div class="row">
+        <div>
+          <label for="deployFrom">Deployer (wallet/account id)</label>
+          <input id="deployFrom" value="alice" />
+        </div>
+        <div>
+          <label for="collectionName">Collection Name</label>
+          <input id="collectionName" value="MRD-NFT" />
+        </div>
+      </div>
+      <div class="row3">
+        <div>
+          <label for="collectionSymbol">Symbol</label>
+          <input id="collectionSymbol" value="RNFT" />
+        </div>
+        <div>
+          <label for="collectionBaseUri">Base URI (optional)</label>
+          <input id="collectionBaseUri" value="" />
+        </div>
+        <div>
+          <label>&nbsp;</label>
+          <button id="btnDeploy" style="width:100%">Deploy</button>
+        </div>
+      </div>
+      <div id="deployOut" class="mono" aria-live="polite"></div>
+    </div>
+
+    <div class="card">
+      <h2>Mint (with metadata)</h2>
+      <div class="row">
+        <div>
+          <label for="mintContract">Contract</label>
+          <input id="mintContract" placeholder="<contract_id_or_address>" />
+        </div>
+        <div>
+          <label for="mintTo">To</label>
+          <input id="mintTo" value="alice" />
+        </div>
+      </div>
+      <div class="row3">
+        <div>
+          <label for="tokenId">Token ID</label>
+          <input id="tokenId" value="1" />
+        </div>
+        <div>
+          <label for="mintFrom">Sender (wallet/account id)</label>
+          <input id="mintFrom" value="alice" />
+        </div>
+        <div>
+          <label>&nbsp;</label>
+          <button id="btnMint" style="width:100%">Send Mint</button>
+        </div>
+      </div>
+      <label for="metadataJson">Metadata JSON</label>
+      <textarea id="metadataJson" rows="6">{
+  "name": "My NFT #1",
+  "description": "Demo NFT minted from the template.",
+  "image": "ipfs://<CID>"
+}</textarea>
+      <div id="mintOut" class="mono" aria-live="polite"></div>
+    </div>
+
+    <div class="card">
+      <h2>Transfer</h2>
+      <div class="row">
+        <div>
+          <label for="xferContract">Contract</label>
+          <input id="xferContract" placeholder="<contract_id_or_address>" />
+        </div>
+        <div>
+          <label for="xferFrom">From</label>
+          <input id="xferFrom" value="alice" />
+        </div>
+      </div>
+      <div class="row3">
+        <div>
+          <label for="xferTo">To</label>
+          <input id="xferTo" value="bob" />
+        </div>
+        <div>
+          <label for="xferTokenId">Token ID</label>
+          <input id="xferTokenId" value="1" />
+        </div>
+        <div>
+          <label>&nbsp;</label>
+          <button id="btnTransfer" style="width:100%">Send Transfer</button>
+        </div>
+      </div>
+      <div id="xferOut" class="mono" aria-live="polite"></div>
+    </div>
+
+    <div class="card">
+      <h2>Query Owner</h2>
+      <div class="row">
+        <div>
+          <label for="ownerContract">Contract</label>
+          <input id="ownerContract" placeholder="<contract_id_or_address>" />
+        </div>
+        <div>
+          <label for="ownerTokenId">Token ID</label>
+          <input id="ownerTokenId" value="1" />
+        </div>
+      </div>
+      <div class="btnbar">
+        <button id="btnOwner">Query Owner</button>
+      </div>
+      <div id="ownerOut" class="mono" aria-live="polite"></div>
+    </div>
+
+    <div class="card">
+      <h2>CLI equivalents</h2>
+      <div class="mono">
+Moonrand tx send-deploy <data_dir> --from alice --marker randnft --args '{"name":"MRD-NFT","symbol":"RNFT"}'
+Moonrand tx send-call   <data_dir> --from alice --to <contract> --method mint --args '{"to":"alice","token_id":1,"metadata":{...}}'
+Moonrand tx send-call   <data_dir> --from alice --to <contract> --method transfer --args '{"to":"bob","token_id":1}'
+Moonrand query randnft-owner <data_dir> --contract <contract> --token-id 1
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

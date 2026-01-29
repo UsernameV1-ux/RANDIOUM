@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Moonrand DApp Template: Token Launcher</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="wrap">
+    <h1>Token Launcher (MRD-20) — Static Template</h1>
+    <p class="muted">This is a pure static UI template. It is CI-friendly and does not start any servers. It assumes an HTTP RPC gateway exists that exposes the endpoints referenced by <span class="mono-inline">app.js</span>.</p>
+
+    <div class="card">
+      <h2>RPC</h2>
+      <label for="rpcUrl">RPC Base URL</label>
+      <input id="rpcUrl" value="http://127.0.0.1:8545" />
+      <div class="btnbar">
+        <button id="btnStatus">Connect (Get Status)</button>
+      </div>
+      <div id="statusOut" class="mono" aria-live="polite"></div>
+    </div>
+
+    <div class="card">
+      <h2>Deploy MRD-20 marker contract</h2>
+      <div class="row">
+        <div>
+          <label for="deployFrom">Deployer (wallet/account id)</label>
+          <input id="deployFrom" value="alice" />
+        </div>
+        <div>
+          <label for="tokenSymbol">Token Symbol</label>
+          <input id="tokenSymbol" value="RAND20" />
+        </div>
+      </div>
+      <div class="row3">
+        <div>
+          <label for="tokenDecimals">Decimals</label>
+          <input id="tokenDecimals" value="18" />
+        </div>
+        <div>
+          <label for="tokenInitSupply">Initial Supply</label>
+          <input id="tokenInitSupply" value="0" />
+        </div>
+        <div>
+          <label>&nbsp;</label>
+          <button id="btnDeploy" style="width:100%">Deploy</button>
+        </div>
+      </div>
+      <label for="deployNote">Notes / Init data (optional)</label>
+      <input id="deployNote" value="" />
+      <div id="deployOut" class="mono" aria-live="polite"></div>
+    </div>
+
+    <div class="card">
+      <h2>Mint</h2>
+      <div class="row">
+        <div>
+          <label for="mintContract">Contract</label>
+          <input id="mintContract" placeholder="<contract_id_or_address>" />
+        </div>
+        <div>
+          <label for="mintTo">To</label>
+          <input id="mintTo" value="alice" />
+        </div>
+      </div>
+      <div class="row3">
+        <div>
+          <label for="mintAmount">Amount</label>
+          <input id="mintAmount" value="1" />
+        </div>
+        <div>
+          <label for="mintFrom">Sender (wallet/account id)</label>
+          <input id="mintFrom" value="alice" />
+        </div>
+        <div>
+          <label>&nbsp;</label>
+          <button id="btnMint" style="width:100%">Send Mint</button>
+        </div>
+      </div>
+      <div id="mintOut" class="mono" aria-live="polite"></div>
+    </div>
+
+    <div class="card">
+      <h2>Transfer</h2>
+      <div class="row">
+        <div>
+          <label for="xferContract">Contract</label>
+          <input id="xferContract" placeholder="<contract_id_or_address>" />
+        </div>
+        <div>
+          <label for="xferFrom">From</label>
+          <input id="xferFrom" value="alice" />
+        </div>
+      </div>
+      <div class="row3">
+        <div>
+          <label for="xferTo">To</label>
+          <input id="xferTo" value="bob" />
+        </div>
+        <div>
+          <label for="xferAmount">Amount</label>
+          <input id="xferAmount" value="1" />
+        </div>
+        <div>
+          <label>&nbsp;</label>
+          <button id="btnTransfer" style="width:100%">Send Transfer</button>
+        </div>
+      </div>
+      <div id="xferOut" class="mono" aria-live="polite"></div>
+    </div>
+
+    <div class="card">
+      <h2>Query Supply</h2>
+      <div class="row">
+        <div>
+          <label for="supplyContract">Contract</label>
+          <input id="supplyContract" placeholder="<contract_id_or_address>" />
+        </div>
+        <div>
+          <label>&nbsp;</label>
+          <button id="btnSupply" style="width:100%">Query Supply</button>
+        </div>
+      </div>
+      <div id="supplyOut" class="mono" aria-live="polite"></div>
+    </div>
+
+    <div class="card">
+      <h2>CLI equivalents</h2>
+      <div class="mono">
+Moonrand tx send-deploy <data_dir> --from alice --marker rand20 --args '{"symbol":"RAND20","decimals":18,"initial_supply":0}'
+Moonrand tx send-call   <data_dir> --from alice --to <contract> --method mint --args '{"to":"alice","amount":1}'
+Moonrand tx send-call   <data_dir> --from alice --to <contract> --method transfer --args '{"to":"bob","amount":1}'
+Moonrand query rand20-supply <data_dir> --contract <contract>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

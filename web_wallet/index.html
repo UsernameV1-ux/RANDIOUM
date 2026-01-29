@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Moonrand Wallet</title>
+  <style>
+    :root { color-scheme: dark; }
+    body { margin: 0; font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial; background: #0b1020; color: #e8ecff; }
+    .wrap { max-width: 860px; margin: 0 auto; padding: 28px 18px 42px; }
+    .card { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12); border-radius: 14px; padding: 18px; margin-top: 16px; }
+    h1 { font-size: 22px; margin: 0 0 8px; }
+    h2 { font-size: 16px; margin: 0 0 10px; opacity: 0.95; }
+    p { margin: 8px 0; opacity: 0.9; line-height: 1.5; }
+    label { display: block; font-size: 12px; opacity: 0.9; margin: 12px 0 6px; }
+    input { width: 100%; box-sizing: border-box; padding: 10px 12px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.18); background: rgba(10,14,28,0.7); color: #e8ecff; outline: none; }
+    input:focus { border-color: rgba(120,160,255,0.65); }
+    .row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .row3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
+    button { padding: 10px 12px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.18); background: rgba(120,160,255,0.25); color: #e8ecff; cursor: pointer; }
+    button:hover { background: rgba(120,160,255,0.35); }
+    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 12px; white-space: pre-wrap; word-break: break-word; background: rgba(0,0,0,0.25); border: 1px solid rgba(255,255,255,0.10); border-radius: 10px; padding: 10px; }
+    .muted { opacity: 0.75; }
+    .ok { color: #a6ffcb; }
+    .err { color: #ff9aa6; }
+    .btnbar { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 12px; }
+    textarea { width: 100%; box-sizing: border-box; padding: 10px 12px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.18); background: rgba(10,14,28,0.7); color: #e8ecff; outline: none; min-height: 120px; resize: vertical; }
+    textarea:focus { border-color: rgba(120,160,255,0.65); }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>Moonrand Web Wallet (Skeleton)</h1>
+    <p class="muted">This is a static UI scaffold. It is CI-friendly and does not start any servers. It expects a future HTTP RPC that exposes JSON endpoints.</p>
+
+    <div class="card">
+      <h2>RPC</h2>
+      <label for="rpcUrl">RPC Base URL</label>
+      <input id="rpcUrl" value="http://127.0.0.1:8545" />
+      <div class="btnbar">
+        <button id="btnStatus">Get Status</button>
+      </div>
+      <div id="statusOut" class="mono" aria-live="polite"></div>
+    </div>
+
+    <div class="card">
+      <h2>Balance</h2>
+      <div class="row">
+        <div>
+          <label for="accountId">Account ID</label>
+          <input id="accountId" value="alice" />
+        </div>
+        <div>
+          <label>&nbsp;</label>
+          <button id="btnBalance" style="width:100%">Get Balance</button>
+        </div>
+      </div>
+      <div id="balanceOut" class="mono" aria-live="polite"></div>
+    </div>
+
+    <div class="card">
+      <h2>Send</h2>
+      <div class="row">
+        <div>
+          <label for="fromId">From</label>
+          <input id="fromId" value="alice" />
+        </div>
+        <div>
+          <label for="toId">To</label>
+          <input id="toId" value="bob" />
+        </div>
+      </div>
+      <div class="row3">
+        <div>
+          <label for="amount">Amount</label>
+          <input id="amount" value="1" />
+        </div>
+        <div>
+          <label for="fee">Fee</label>
+          <input id="fee" value="1" />
+        </div>
+        <div>
+          <label>&nbsp;</label>
+          <button id="btnSend" style="width:100%">Send</button>
+        </div>
+      </div>
+      <div id="sendOut" class="mono" aria-live="polite"></div>
+    </div>
+
+    <div class="card">
+      <h2>CLI equivalents</h2>
+      <div class="mono">
+Moonrand wallet create --id alice --out wallet.alice.json
+Moonrand wallet balance &lt;data_dir&gt; --wallet wallet.alice.json
+Moonrand wallet send &lt;data_dir&gt; --wallet wallet.alice.json --to bob --amount 1 --fee 1
+Moonrand rpc getStatus &lt;data_dir&gt;
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Verify Tx Proof (Local)</h2>
+      <label for="txProofHex">TxInclusionProof hex</label>
+      <textarea id="txProofHex" placeholder="0x... or hex"></textarea>
+      <div class="btnbar">
+        <button id="btnVerifyTxProof">Verify</button>
+      </div>
+      <div id="txProofOut" class="mono" aria-live="polite"></div>
+    </div>
+  </div>
+
+  <script src="proof_verify.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

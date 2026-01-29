@@ -1,0 +1,142 @@
+{
+  "version": 6,
+  "cmakeMinimumRequired": {
+    "major": 3,
+    "minor": 23,
+    "patch": 0
+  },
+  "configurePresets": [
+    {
+      "name": "base",
+      "hidden": true,
+      "generator": "Ninja",
+      "binaryDir": "${sourceDir}/cmake-build-${presetName}",
+      "environment": {
+        "PATH": "D:/Program Files/JetBrains/CLion 2025.3.1/bin/mingw/bin;D:/Program Files/JetBrains/CLion 2025.3.1/bin/ninja/win/x64;$penv{PATH}"
+      },
+      "cacheVariables": {
+        "CMAKE_EXPORT_COMPILE_COMMANDS": "ON",
+        "CMAKE_C_COMPILER": "D:/Program Files/JetBrains/CLion 2025.3.1/bin/mingw/bin/gcc.exe",
+        "CMAKE_CXX_COMPILER": "D:/Program Files/JetBrains/CLion 2025.3.1/bin/mingw/bin/g++.exe"
+      }
+    },
+    {
+      "name": "debug",
+      "displayName": "Debug",
+      "inherits": "base",
+      "binaryDir": "${sourceDir}/cmake-build-windsurf",
+      "environment": {
+        "PATH": "D:/Program Files/JetBrains/CLion 2025.3.1/bin/mingw/bin;D:/Program Files/JetBrains/CLion 2025.3.1/bin/ninja/win/x64;$penv{PATH}"
+      },
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Debug",
+        "CMAKE_C_COMPILER": "D:/Program Files/JetBrains/CLion 2025.3.1/bin/mingw/bin/gcc.exe",
+        "CMAKE_CXX_COMPILER": "D:/Program Files/JetBrains/CLion 2025.3.1/bin/mingw/bin/g++.exe",
+        "MOONRAND_ENABLE_BENCH": "OFF",
+        "MOONRAND_ENABLE_FUZZ": "OFF",
+        "MOONRAND_ENABLE_SLOW_TESTS": "OFF"
+      }
+    },
+    {
+      "name": "release",
+      "displayName": "Release",
+      "inherits": "base",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Release"
+      }
+    },
+    {
+      "name": "relwithdebinfo",
+      "displayName": "RelWithDebInfo",
+      "inherits": "base",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "RelWithDebInfo"
+      }
+    },
+    {
+      "name": "bench",
+      "displayName": "Bench",
+      "inherits": "release",
+      "cacheVariables": {
+        "MOONRAND_ENABLE_BENCH": "ON"
+      }
+    },
+    {
+      "name": "perf",
+      "displayName": "Perf",
+      "inherits": "release",
+      "cacheVariables": {
+        "MOONRAND_ENABLE_BENCH": "ON",
+        "MOONRAND_ENABLE_PERF_COUNTERS": "ON"
+      }
+    },
+    {
+      "name": "fuzz",
+      "displayName": "Fuzz",
+      "inherits": "debug",
+      "cacheVariables": {
+        "MOONRAND_ENABLE_FUZZ": "ON"
+      }
+    },
+    {
+      "name": "slowtests",
+      "displayName": "SlowTests",
+      "inherits": "debug",
+      "cacheVariables": {
+        "MOONRAND_ENABLE_SLOW_TESTS": "ON"
+      }
+    }
+  ],
+  "buildPresets": [
+    {
+      "name": "debug",
+      "configurePreset": "debug"
+    },
+    {
+      "name": "release",
+      "configurePreset": "release"
+    },
+    {
+      "name": "relwithdebinfo",
+      "configurePreset": "relwithdebinfo"
+    },
+    {
+      "name": "bench",
+      "configurePreset": "bench"
+    },
+    {
+      "name": "perf",
+      "configurePreset": "perf"
+    },
+    {
+      "name": "fuzz",
+      "configurePreset": "fuzz"
+    },
+    {
+      "name": "slowtests",
+      "configurePreset": "slowtests"
+    }
+  ],
+  "testPresets": [
+    {
+      "name": "debug",
+      "configurePreset": "debug",
+      "output": { "outputOnFailure": true }
+    },
+    {
+      "name": "release",
+      "configurePreset": "release",
+      "output": { "outputOnFailure": true }
+    },
+    {
+      "name": "fuzz",
+      "configurePreset": "fuzz",
+      "output": { "outputOnFailure": true }
+    },
+    {
+      "name": "bench",
+      "configurePreset": "bench",
+      "output": { "outputOnFailure": true }
+    }
+  ]
+}

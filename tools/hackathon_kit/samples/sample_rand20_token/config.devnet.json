@@ -1,0 +1,4 @@
+{
+  "notes": "sample config placeholder for deterministic devnet usage",
+  "data_dir": "./devnet/nodes/full1"
+}
